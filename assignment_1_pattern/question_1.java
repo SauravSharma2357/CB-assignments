@@ -1,4 +1,4 @@
-package assignment_1;
+package assignment_1_pattern;
 
 public class question_1 {
 
