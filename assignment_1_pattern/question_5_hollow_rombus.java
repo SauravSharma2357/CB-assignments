@@ -14,19 +14,19 @@ public class question_5_hollow_rombus {
 		while (row<=n) {
 			int i = 1;
 			while (i<=space) {
-				System.out.print("  ");
+				System.out.print(" ");
 				i++;
 			}
 			int j =1;
 			while (j<=star) {
 				if (j==1 || j==n) {
-					System.out.print("* ");
+					System.out.print("*");
 				}
 				else if (row==1 || row==n) {
-					System.out.print("* ");
+					System.out.print("*");
 				}
 				else {
-					System.out.print("  ");
+					System.out.print(" ");
 				}
 				j++;
 			}

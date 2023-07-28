@@ -14,12 +14,12 @@ public class question_10_pattern_magic {
 		while(row<=2*n-1) {
 			int i=1;
 			while(i<=star) {
-				System.out.print("* ");
+				System.out.print("*");
 				i++;
 			}
 			int j=1;
 			while(j<=space) {
-				System.out.print("  ");
+				System.out.print(" ");
 				j++;
 			}
 			int k=1;
@@ -27,7 +27,7 @@ public class question_10_pattern_magic {
 			//	k=2;
 			//}
 			while(k<=star && k!=n) {
-				System.out.print("* ");
+				System.out.print("*");
 				k++;
 				
 			}
