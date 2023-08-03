@@ -7,11 +7,14 @@ public class question_12_replace_them_all {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner kc = new Scanner(System.in);
-		int n = kc.nextInt();
-		int sum = 0;
-		int mul = 1;
+		long n = kc.nextLong();
+		long sum = 0;
+		long mul = 1;
+        if(n==0){
+            n=5;
+        }
 		while(n!=0) {
-			int rem = n%10;
+			long rem = n%10;
 			if(rem==0) {
 				rem=5;
 			}

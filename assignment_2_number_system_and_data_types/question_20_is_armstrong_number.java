@@ -10,14 +10,23 @@ public class question_20_is_armstrong_number {
 		int n = kc.nextInt();
 		int rem=0;
 		int arm=0;
-		int i=n;
+		int j=n;
 		int count=0;
-		for(i=n;i>0;i=i/10) {
-			rem=i%10;
+		while(j!=0) {
+			j=j/10;
 			count++;
-			i=i/10;
 		}
-		System.out.println(count);
+		for(int i=n;i>0;i=i/10) {
+			rem=i%10;
+			arm=(int)(arm+Math.pow(rem, count));
+		}
+		if(arm==n) {
+			System.out.println("true");
+		}
+		else {
+			System.out.println("false");
+		}
+		
 
 	}
 
