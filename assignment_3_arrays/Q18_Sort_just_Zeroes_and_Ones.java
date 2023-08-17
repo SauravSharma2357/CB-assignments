@@ -18,16 +18,14 @@ public class Q18_Sort_just_Zeroes_and_Ones {
 		}
 	}
 	public static int[] Sort(int[] arr) {
-		for(int i=0;i<arr.length;i++) {
-			int mini=i;
-			for(int j=i+1;j<arr.length;j++) {
-				if(arr[mini]>arr[j]) {
-					mini=j;
+		for(int i=1;i<arr.length;i++) {
+			for(int j=0;j<arr.length-i;j++) {
+			if(arr[j]>arr[j+1]) {
+				int temp = arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=temp;
 				}
 			}
-			int temp = arr[i];
-			arr[i]=arr[mini];
-			arr[mini]=temp;
 		}
 		return arr;
 	}
