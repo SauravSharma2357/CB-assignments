@@ -21,13 +21,7 @@ public class Q21_Inverse_of_an_array {
 		int N = arr.length;
 		int[] ans = new int[N];
 			for(int i=0;i<arr.length;i++) {
-				int j=N-i;
-				int p=N-arr[i];
-				if(arr[i]==0) {
-					j=0;
-					p=i;
-				}
-				ans[p]=j;
+				ans[arr[i]]=i;
 			}
 		return ans;
 	}
