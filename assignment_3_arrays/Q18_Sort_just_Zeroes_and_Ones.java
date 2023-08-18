@@ -12,22 +12,31 @@ public class Q18_Sort_just_Zeroes_and_Ones {
 		for(int i=0;i<arr.length;i++) {
 			arr[i]=kc.nextInt();
 		}
-		Sort(arr);
-		for(int j=0;j<arr.length;j++) {
-			System.out.print(arr[j]+" ");
+		int[] X = Sort(arr);
+		for(int j=0;j<X.length;j++) {
+			System.out.print(X[j]+" ");
 		}
 	}
 	public static int[] Sort(int[] arr) {
-		for(int i=1;i<arr.length;i++) {
-			for(int j=0;j<arr.length-i;j++) {
-			if(arr[j]>arr[j+1]) {
-				int temp = arr[j];
-				arr[j]=arr[j+1];
-				arr[j+1]=temp;
+		int N =arr.length;
+		int[] ans = new int[N];
+		int j=0;
+		int k=N-1;
+		for(int i=0;i<arr.length;i++) {
+			while(j<=k) {
+				if(arr[i]==0) {
+					ans[j]=arr[i];
+					j++;
+					break;
+				}
+				else {
+					ans[k]=arr[i];
+					k--;
+					break;
 				}
 			}
 		}
-		return arr;
+		return ans;
 	}
 
 }
