@@ -23,7 +23,11 @@ public class Q1743_Nobita_Scored_Good_Marks {
 			}
 		}
 		else {
-			rem=N-X;
+			rem = X%N;
+			if(rem>N/2) {
+				rem=N-rem;
+			}
+			
 		}
 		return rem;
 	}
