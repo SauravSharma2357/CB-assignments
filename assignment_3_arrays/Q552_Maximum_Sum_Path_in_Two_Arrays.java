@@ -8,77 +8,42 @@ public class Q552_Maximum_Sum_Path_in_Two_Arrays {
 		// TODO Auto-generated method stub
 		Scanner kc = new Scanner(System.in);
 		int T = kc.nextInt();
-		for(int i=1;i<=T;i++) {
-			int N1 = kc.nextInt();
-			int N2 = kc.nextInt();
-			int[] arr1 = new int[N1];
-			int[] arr2 = new int [N2];
-			for(int j=0;j<arr1.length;j++) {
-				arr1[j]=kc.nextInt();
+		for (int i = 1; i <= T; i++) {
+			int n = kc.nextInt();
+			int m = kc.nextInt();
+			int[] arr1 = new int[n];
+			int[] arr2 = new int[m];
+			for (int j = 0; j < arr1.length; j++) {
+				arr1[j] = kc.nextInt();
 			}
-			for(int k=0;k<arr2.length;k++) {
-				arr2[k]=kc.nextInt();
+			for (int k = 0; k < arr2.length; k++) {
+				arr2[k] = kc.nextInt();
 			}
-			MaxSum(arr1,arr2);
+			System.out.println(maxPathSum(arr1, arr2,m,n));
 		}
-	}
-	public static void MaxSum(int[] arr1, int[] arr2) {
-		int sum1=0;
-		int sum2=0;
-		int max=0;
-		for(int i=0;i<arr1.length;i++) {
-			sum1=sum1+arr1[i];
-		}
-		for(int j=0;j<arr2.length;j++) {
-			sum2=sum2+arr2[j];
-		}
-		if(sum1>sum2) {
-			max=sum1;
-		}
-		else {
-			max=sum2;
-		}
-		Array1Max(arr1,arr2,max);
-	}
-	public static void Array1Max(int[] arr1,int[] arr2,int max) {
-		for(int k=0;k<arr1.length;k++) {
-			int sum3=0;
-			for(int l=0;l<arr2.length;l++) {
-				
-				if(arr1[k]==arr2[l]) {
-					for(int m=0;m<k;m++) {
-						sum3=sum3+arr1[m];
-					}
-					for(int n=l;n<arr2.length;n++) {
-						sum3=sum3+arr2[n];
-					}
-				}
-			}
-			if(sum3>max) {
-				max=sum3;
-			}
-		}
-		Array2Max(arr1,arr2,max);
-	}
-	public static void Array2Max(int[] arr1,int[] arr2,int max) {
-		for(int k=0;k<arr2.length;k++) {
-			int sum3=0;
-			for(int l=0;l<arr1.length;l++) {
-				
-				if(arr2[k]==arr1[l]) {
-					for(int m=0;m<k;m++) {
-						sum3=sum3+arr2[m];
-					}
-					for(int n=l;n<arr1.length;n++) {
-						sum3=sum3+arr1[n];
-					}
-				}
-			}
-			if(sum3>max) {
-				max=sum3;
-			}
-		}
-		System.out.println(max);
 	}
 
-}
+	    public static int maxPathSum(int ar1[], int ar2[], int m, int n) {
+	        int i = 0, j = 0;
+	        int result = 0, sum1 = 0, sum2 = 0;
+	        while (i < m && j < n) {
+	            if (ar1[i] < ar2[j])
+	                sum1 += ar1[i++];
+	            else if (ar1[i] > ar2[j])
+	                sum2 += ar2[j++];
+	            else {
+	                result += Math.max(sum1, sum2) + ar1[i];
+	                sum1 = 0;
+	                sum2 = 0;
+	                i++;
+	                j++;
+	            }
+	        }
+	        while (i < m)
+	            sum1 += ar1[i++];
+	        while (j < n)
+	            sum2 += ar2[j++];
+	        result += Math.max(sum1, sum2);
+	        return result;
+	    }
+	}

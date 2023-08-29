@@ -1,57 +1,88 @@
 package assignment_3_arrays;
 
-import java.util.Scanner;
-
+import java.util.*;
 public class Q1075_Next_Permutation {
+    
+	static Scanner scn = new Scanner(System.in);
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner kc = new Scanner(System.in);
-		int T = kc.nextInt();
-		for(int i=1;i<=T;i++) {
-			int N = kc.nextInt();
-			int[] arr = new int[N];
-			for(int j=0;j<arr.length;j++) {
-				arr[j]=kc.nextInt();
-			}
-			int[] X=Permutation(arr);
-			for(int k=0;k<X.length;k++) {
-				System.out.print(arr[k]+" ");
-			}
-			System.out.println();
+	public static void main(String args[]) {
+
+		int t = scn.nextInt();
+		while ((t--) > 0) {
+
+			int n = scn.nextInt();
+			int[] arr = takeInput(n);
+
+			next_permutation(arr);
+			display(arr);
+
 		}
 	}
-	public static int[] Permutation(int[] arr) {
-		int N=arr.length-1;
-		int count =0;
-		for(int i=N;i>0;i--) {
-			int j=i-1;
-			if(arr[j]<arr[i]) {
-				int temp=arr[i];
-				arr[i]=arr[j];
-				arr[j]=temp;
-				count++;
+
+	public static int[] takeInput(int n) {
+
+		int[] arr = new int[n];
+
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = scn.nextInt();
+
+		return arr;
+
+	}
+
+	public static void next_permutation(int[] nums) {
+
+		if (nums == null || nums.length < 2)
+			return;
+
+		int p = 0;
+		for (int i = nums.length - 2; i >= 0; i--) {
+			if (nums[i] < nums[i + 1]) {
+				p = i;
 				break;
 			}
 		}
-		if(count==0) {
-			Sort(arr);
-		}
-		return arr;
-	}
-	public static int[] Sort(int[] arr) {
-		for(int i=0;i<arr.length;i++) {
-			int mini=i;
-			for(int j=i+1;j<arr.length;j++) {
-				if(arr[mini]>arr[j]) {
-					mini=j;
-				}
+
+		int q = 0;
+		for (int i = nums.length - 1; i > p; i--) {
+			if (nums[i] > nums[p]) {
+				q = i;
+				break;
 			}
-			int temp = arr[i];
-			arr[i]=arr[mini];
-			arr[mini]=temp;
 		}
-		return arr;
+
+		if (p == 0 && q == 0) {
+			reverse(nums, 0, nums.length - 1);
+			return;
+		}
+
+		int temp = nums[p];
+		nums[p] = nums[q];
+		nums[q] = temp;
+
+		if (p < nums.length - 1) {
+			reverse(nums, p + 1, nums.length - 1);
+		}
 	}
 
+	public static void reverse(int[] nums, int left, int right) {
+		while (left < right) {
+			int temp = nums[left];
+			nums[left] = nums[right];
+			nums[right] = temp;
+			left++;
+			right--;
+		}
+	}
+
+	public static void display(int[] arr) {
+
+		for (int val=0;val<arr.length;val++) {
+			System.out.print(arr[val] + " ");
+		}
+
+		System.out.println();
+	}
+
+    
 }
