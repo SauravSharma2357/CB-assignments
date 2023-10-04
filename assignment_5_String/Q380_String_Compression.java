@@ -8,6 +8,8 @@ public class Q380_String_Compression {
 		// TODO Auto-generated method stub
 		Scanner kc = new Scanner(System.in);
 		String str = kc.next();
+		char[] arr = str.toCharArray();
+		str = Sort(arr);
 		Compression(str);
 	}
 	public static void Compression(String str) {
@@ -24,5 +26,20 @@ public class Q380_String_Compression {
 			i=count1;
 			System.out.print(ch+""+count2);
 		}
+	}
+	public static String Sort(char arr[]) {
+		char temp;
+		for(int i=0;i<arr.length;i++) {
+			for(int j=i+1;j<arr.length;j++) {
+				if(arr[j]<arr[i]) {
+					temp=arr[i];
+					arr[i]=arr[j];
+					arr[j]=temp;
+				}
+			}
+		}
+		String str = String.valueOf(arr);
+		System.out.println(str);
+		return str;
 	}
 }
