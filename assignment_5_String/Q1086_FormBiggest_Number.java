@@ -7,36 +7,35 @@ public class Q1086_FormBiggest_Number {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner kc = new Scanner(System.in);
-		int T = kc.nextInt();
-		for(int i=1;i<=T;i++) {
-			int N= kc.nextInt();
-			int[] arr = new int[N];
-			for(int j=0;j<arr.length;j++) {
-				arr[j]= kc.nextInt();
+		int t = kc.nextInt();
+		while(t>0) {
+			int n = kc.nextInt();
+			int[] arr = new int[n];
+			for(int i=0;i<n;i++) {
+				arr[i] = kc.nextInt();
 			}
-			Number(arr,"");
-		}
-	}
-	public static void Number(int[] arr, String ans) {
-		for(int i=0;i<arr.length;i++) {
-			String s = Integer.toString(arr[i]);
-			for(int j=i;j<arr.length;j++) {
-				String s1 = Integer.toString(arr[j]);
-				for(int n=0;n<s.length();n++) {
-					char ch = s.charAt(n);
-					char ch1 = s1.charAt(n);
-					if (ch<ch1 || s.length()<s1.length()) {
-						int temp = arr[j];
-						arr[j]=arr[i];
-						arr[i]=temp;
-						break;
+			for(int i=0;i<n;i++) {
+				for(int j=1;j<n-i;j++) {
+					String left = Integer.toString(arr[j-1]);
+					String right = Integer.toString(arr[j]);
+					
+					String ans1 = left+right;
+					String ans2 = right+left;
+					
+					if(ans1.compareTo(ans2)<0) {
+						int temp=arr[j];
+						arr[j]=arr[j-1];
+						arr[j-1]=temp;
 					}
 				}
 				
 			}
-			ans=ans+arr[i];
+			for(int i=0;i<n;i++) {
+				System.out.print(arr[i]);
+			}
+			System.out.println();
+			t--;
 		}
-		System.out.println(ans);
 	}
 
 }
