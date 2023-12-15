@@ -10,20 +10,27 @@ public class Q525_Boardpath_Count_Print {
 		Scanner kc = new Scanner(System.in);
 		int N = kc.nextInt();
 		int M = kc.nextInt();
-		Board(N,M,"",0);
+//		int[] arr = new int[M];
+//		int counter = 1;
+//		for(int i=0;i<arr.length;i++) {
+//			arr[i]=counter;
+//			counter++;
+//		}
+		Board(N,0,M,"");
 		System.out.println("\n"+count);
 	}
-	public static void Board(int n, int m,String ans, int idx) {
-		if(idx>n) {
-			return;
-		}
-		if(idx==m) {
-			count++;
+	public static void Board(int end, int curr, int diceFaces,String ans) {
+		
+		if(curr==end) {
 			System.out.print(ans+" ");
+			count++;
 			return;
 		}
-		for(int i=1;i<=m;i++) {
-			Board(n,m,ans+i,idx+i);
+		if(curr>end) {
+			return;
+		}
+		for(int i=1;i<=diceFaces;i++) {	
+			Board(end,curr+i,diceFaces,ans+i);
 		}
 	}
 

@@ -3,45 +3,43 @@ package assignment_6_recursion_and_back_tracking;
 import java.util.Scanner;
 
 public class Q_703_Vivek_Loves_Array_Game {
-	static int max=0;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner kc = new Scanner(System.in);
 		int t = kc.nextInt();
-		while (t > 0) {
+		while (t-- > 0) {
 			int n = kc.nextInt();
 			int[] arr = new int[n];
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = kc.nextInt();
 			}
-			Vivek(arr, 0, n - 1,0,0,0);
-			t--;
-			System.out.print(max);
+			System.out.print(Vivek(arr, 0, n - 1));
 		}
 	}
 
-	public static void Vivek(int[] arr, int left, int right,int c1,int c2,int max) {
-		if (left == right) {
-			return ;
-		}
-		int totalsum = 0;
-		for (int i = left; i <=right; i++) {
-			totalsum = totalsum + arr[i];
-		}
-		if (totalsum % 2 != 0) {
-			return ;
-		}
-		int halfsum = totalsum / 2;
-		int leftsum = 0;
-		for (int i = left; i < right; i++) {
-			leftsum = leftsum + arr[i];
-			if (leftsum == halfsum) {
-				Vivek(arr, left, i,c1++,c2,max);
-				max=Math.max(max, c1);
-				Vivek(arr, i + 1, right,c1,c2++,max);
-				max=Math.max(max, c2);
+	public static int Vivek(int[] arr, int si, int ei) {
+
+		for (int mid = si; mid < ei; mid++) {
+			
+			int sum1=0;
+			for(int i=si; i<=mid; i++) {  // here doing that partition in this loop
+				sum1+=arr[i];
+			}
+			
+			int sum2=0;
+			for(int i=mid+1; i<=ei; i++) {
+				sum2+=arr[i];
+			}
+			
+			if(sum1==sum2) {
+				int lf = Vivek(arr,si,mid);
+				int rf = Vivek(arr,mid+1,ei);
+				return Math.max(lf, rf)+1; // +1 because we did the first partition we have to count thath
 			}
 		}
+		
+		return 0; // if we get out of the loop  means we didnt get any partition so return 0
 	}
 
 }
